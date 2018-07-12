@@ -1,0 +1,14 @@
+[Unit]
+Description=proxy_{{=SERVICE_NAME}}
+
+[Service]
+ExecStart={{=PYTHON3_PATH}} {{=PROXY_DIR}}/server.py {{=LISTEN_PORT}} {{=FORWARD_PORT}} {{=SERVICE_NAME}}
+Restart=always
+RestartSec=1
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=proxy_{{=SERVICE_NAME}}
+
+[Install]
+WantedBy=multi-user.target
+
